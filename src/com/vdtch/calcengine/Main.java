@@ -5,7 +5,29 @@ public class Main {
     public static void main(String[] args) {
 
         //useMathEquation();
+        //useCalculatorBase();
+        // useCalculateHelper();
 
+        String[] statements = {
+                "add 25.0 92.0", // 25.0 + 92.0 = 117.0
+                "power 5.0 2.0" // 5.0 ^ 2.0 = 25.0
+        };
+
+        DynamicHelper helper = new DynamicHelper(new MathProcessing[] {
+            new Adder(),
+                new PowerOf()
+        });
+
+        for (String statement : statements) {
+            String output = helper.process(statement);
+            System.out.println(output);
+
+        }
+
+
+    }
+
+    static void useCalculateHelper() {
         String[] statements = {
                 "add 1.0", // Error. invalid number of values
                 "add xx 25.0", // Error. non-numeric data
@@ -18,7 +40,7 @@ public class Main {
 
         CalculateHelper helper = new CalculateHelper();
 
-        for(String statement:statements){
+        for (String statement : statements) {
             try {
                 helper.process(statement);
                 System.out.println(helper);
@@ -28,10 +50,9 @@ public class Main {
                     System.out.println(" Original exeception : " + e.getCause().getMessage());
             }
         }
-
     }
 
-        static void useMathEquation(){
+        static void useMathEquation () {
 
             MathEquation[] equations = new MathEquation[4];
             equations[0] = new MathEquation('d', 100.d, 50.0d);
@@ -67,7 +88,9 @@ public class Main {
             equationOverload.execute((double) leftInt, rightInt);
             System.out.println("Results =");
             System.out.println(equationOverload.getResult());
+        }
 
+        static void useCalculatorBase () {
             System.out.println();
             System.out.println("Using Inheritance");
             System.out.println();
@@ -87,4 +110,7 @@ public class Main {
 
         }
     }
+
+
+
 
